@@ -1,6 +1,23 @@
 # KC + RSI Mean Reversion on Micro Gold, backtested with Databento
 
+## Results — MGC, 30-minute bars, 1 May – 1 Nov 2026
+
+| Run | Trades | Win rate | Net profit | Profit factor | Max drawdown |
+|---|---|---|---|---|---|
+| Pine-faithful, no costs | 51 | 58.8% | $180 | 1.03 | $1,544 |
+| Pine-faithful, with costs | 51 | 58.8% | $42 | 1.01 | $1,616 |
+| Fixed stop, with costs | 50 | 58.0% | −$1,110 | 0.84 | $3,238 |
+
+One contract. "With costs" = $0.62 commission per side + 1 tick slippage.
+
 ![Equity curve](images/equity_curve.png)
+
+**Takeaways**
+- Roughly breakeven over this period, so no meaningful edge on 30-minute bars once costs are included.
+- Shorts carried the strategy (71% win rate, +$1,869 after costs) while longs lost $1,827.
+- The Pine script recalculates its stop every bar. Locking the stop at entry instead hit more targets but produced larger losses and double the drawdown.
+- Databento flagged 24 May 2026 as a degraded-quality day. One day out of six months doesn't materially affect these results.
+- 51 trades is a small sample, so none of this is statistically conclusive.
 
 A Python port of my TradingView (Pine Script v6) strategy, backtested on CME
 micro gold futures (MGC) using historical data from
